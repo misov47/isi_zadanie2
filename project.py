@@ -88,7 +88,7 @@ def process_path(array_of_tuples):
 
 def process_visited(array_of_tuples):
     for tuple_coordinates in array_of_tuples:
-        x, y = tuple_coordinates
+        y, x = tuple_coordinates
         canvas.create_rectangle(100 + x*20, 50 + y*20, 100 + x*20 + 20, 50 + y*20 + 20, fill="blue",outline="")
 
 
