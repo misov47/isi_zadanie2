@@ -1,9 +1,12 @@
 from collections import deque
+import time
 
 def bfs(maze, start, end):
     rows, cols = len(maze), len(maze[0])
     visited = [[False] * cols for _ in range(rows)]
     queue = deque([(start[0], start[1], [])])
+
+    start_time = time.time()
 
     while queue:
         current_row, current_col, path = queue.popleft()
@@ -12,7 +15,9 @@ def bfs(maze, start, end):
         if (current_row, current_col) == end:
             original_path = path + [(current_row, current_col)]
             switched_path = [(y, x) for x, y in original_path]
-            return switched_path
+            end_time = time.time()
+            elapsed_time = end_time - start_time
+            return switched_path, elapsed_time
 
         neighbors = [
             (current_row - 1, current_col), 
@@ -25,4 +30,6 @@ def bfs(maze, start, end):
             if 0 <= neighbor_row < rows and 0 <= neighbor_col < cols and not visited[neighbor_row][neighbor_col] and maze[neighbor_row][neighbor_col] != '#':
                 queue.append((neighbor_row, neighbor_col, path + [(current_row, current_col)]))
                 visited[neighbor_row][neighbor_col] = True
-    return None
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    return None, elapsed_time

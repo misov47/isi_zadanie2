@@ -1,4 +1,5 @@
 from heapq import heappush, heappop
+import time
 
 def heuristic(position, goal):
     return abs(position[0] - goal[0]) + abs(position[1] - goal[1])
@@ -8,13 +9,17 @@ def a_star_search(maze, start, end):
     visited = [[False] * cols for _ in range(rows)]
     priority_queue = [(0 + heuristic(start, end), 0, start, [])]
 
+    start_time = time.time()
+
     while priority_queue:
         _, cost, current_position, path = heappop(priority_queue)
 
         if current_position == end:
             original_path = path + [current_position]
             switched_path = [(y, x) for x, y in original_path]
-            return switched_path
+            end_time = time.time()
+            elapsed_time = end_time - start_time
+            return switched_path, elapsed_time
 
         if not visited[current_position[0]][current_position[1]]:
             visited[current_position[0]][current_position[1]] = True
@@ -31,5 +36,6 @@ def a_star_search(maze, start, end):
 
             for neighbor_priority, neighbor_cost, neighbor, neighbor_path in neighbors:
                 heappush(priority_queue, (neighbor_priority, neighbor_cost, neighbor, neighbor_path))
-
-    return None  
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    return None, elapsed_time  
