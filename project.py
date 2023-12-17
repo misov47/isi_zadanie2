@@ -111,7 +111,7 @@ def compare_all():
     timedfs = round(timedfs, 6)
     timedfs = str(timedfs)
     process_input(two_dimensional_array)
-    path, timebfs = bfs.bfs(two_dimensional_array, start_position, end_position)
+    path, timebfs, visited = bfs.bfs(two_dimensional_array, start_position, end_position)
     if timebfs < best_time:
         best_search = "BFS"
         best_time = timebfs
@@ -119,7 +119,7 @@ def compare_all():
     timebfs = round(timebfs, 6)
     timebfs = str(timebfs)
     process_input(two_dimensional_array)
-    path, timegreedy = greedy.greedy_search(two_dimensional_array, start_position, end_position)
+    path, timegreedy, visited = greedy.greedy_search(two_dimensional_array, start_position, end_position)
     if timegreedy < best_time:
         best_search = "Greedy"
         best_time = timegreedy
@@ -127,7 +127,7 @@ def compare_all():
     timegreedy = round(timegreedy, 6)
     timegreedy = str(timegreedy)
     process_input(two_dimensional_array)
-    path, timea = a_search.a_star_search(two_dimensional_array, start_position, end_position)
+    path, timea, visited = a_search.a_star_search(two_dimensional_array, start_position, end_position)
     if timea < best_time:
         best_search = "A*"
         best_time = timea
