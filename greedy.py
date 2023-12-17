@@ -7,18 +7,20 @@ def greedy_search(maze, start, end):
     rows, cols = len(maze), len(maze[0])
     visited = [[False] * cols for _ in range(rows)]
     priority_queue = [(heuristic(start, end), start, [])]
+    visited_path = []
 
     start_time = time.time()
 
     while priority_queue:
         _, current_position, path = priority_queue.pop(0)
+        visited_path.append(current_position)
 
         if current_position == end:
             original_path = path + [current_position]
             switched_path = [(y, x) for x, y in original_path]
             end_time = time.time()
             elapsed_time = end_time - start_time
-            return switched_path, elapsed_time
+            return switched_path, elapsed_time, visited_path
 
         if not visited[current_position[0]][current_position[1]]:
             visited[current_position[0]][current_position[1]] = True
@@ -38,4 +40,4 @@ def greedy_search(maze, start, end):
             for _, neighbor in neighbors:
                 priority_queue.insert(0, (heuristic(neighbor, end), neighbor, path + [current_position]))
 
-    return None, None  
+    return None, None, visited_path  

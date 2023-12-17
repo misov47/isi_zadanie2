@@ -22,29 +22,32 @@ def DFS_clicked():
 
 def BFS_clicked():
     process_input(two_dimensional_array)
-    path, time = bfs.bfs(two_dimensional_array, start_position, end_position)
+    path, time, visited = bfs.bfs(two_dimensional_array, start_position, end_position)
     print("BFS: ", time)
     time = round(time, 6)
     time = str(time)
     update_text(f"The computing time of BFS was: {time}s")
+    process_visited(visited)
     process_path(path)
 
 def Greedy_clicked():
     process_input(two_dimensional_array)
-    path, time = greedy.greedy_search(two_dimensional_array, start_position, end_position)
+    path, time, visited = greedy.greedy_search(two_dimensional_array, start_position, end_position)
     print("Greedy: ", time)
     time = round(time, 6)
     time = str(time)
     update_text(f"The computing time of Greedy was: {time}s")
+    process_visited(visited)
     process_path(path)
 
 def A_clicked():
     process_input(two_dimensional_array)
-    path, time = a_search.a_star_search(two_dimensional_array, start_position, end_position)
+    path, time, visited = a_search.a_star_search(two_dimensional_array, start_position, end_position)
     print("A: ", time)
     time = round(time, 6)
     time = str(time)
     update_text(f"The computing time of A* search was: {time}s")
+    process_visited(visited)
     process_path(path)
 
 def clear():
@@ -85,8 +88,8 @@ def process_path(array_of_tuples):
     for tuple_coordinates in array_of_tuples:
         x, y = tuple_coordinates
         canvas.create_rectangle(100 + x*20, 50 + y*20, 100 + x*20 + 20, 50 + y*20 + 20, fill="red",outline="")
-        canvas.after(1)
-        canvas.update()
+        # canvas.after(1)
+        # canvas.update()
 
 def process_visited(array_of_tuples):
     for tuple_coordinates in array_of_tuples:
