@@ -134,7 +134,7 @@ def compare_all():
     print("A: ", timea)
     timea = round(timea, 6)
     timea = str(timea)
-    update_text(f"The computing time of DFS was: {timedfs}s\nThe computing time of BFS was: {timebfs}s\nThe computing time of Greedy was: {timegreedy}s\nThe computing time of A* search was: {timea}s\nThe quickest algorhytm was {best_search}")
+    update_text(f"The computing time of DFS was: {timedfs}s\nThe computing time of BFS was: {timebfs}s\nThe computing time of Greedy was: {timegreedy}s\nThe computing time of A* search was: {timea}s\nThe quickest algorithm was {best_search}")
 
 root = tk.Tk()
 root.title("Labyrinth")
